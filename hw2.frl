@@ -1,0 +1,66 @@
+% define member predicate
+((member X (X|Y)))
+((member X (A|B))
+ (member X B))
+
+
+((person (HOUSE NAT CANDY PET DRINK LOCATION))
+  (member HOUSE (green red yellow blue ivory))
+  (member NAT (english spanish norwegian ukranian japanese))
+  (member CANDY (hershey kitkat smarties snickers milkyway))
+  (member PET (dog fox snails horse zebra)) 
+  (member DRINK (oj tea coffee milk wine))
+  (member LOCATION (1 2 3 4 5) ))
+  
+ 
+%(next X Y)
+ % (or (left X Y) (right X Y)))
+  
+%((left X Y)
+ % (member Y LOCATION)
+  %(sum -1 Y X))
+%((left X Y)
+ % ((member W X) )
+  %(sum -1 Y X))
+  
+%((right X Y)
+ % (member Y LOCATION)
+  %(sum 1 Y X))
+%((right X Y)
+ % (member Y LOCATION)
+  %(sum 1 Y X))
+ 
+((rule () _)(!))
+((rule _ () )(!))
+((rule X (A|B) REF USED)
+  (rule X B REF USED))
+((rule (A|B) X REF USED)
+  (rule B X REF USED))
+((rule (X|A) (B|T) REF USED)(pp USED)
+  (pp)(p "X B: ")(p X B)
+ % (neg (member (X B) USED))
+  (rule X B REF ((X B)|USED))
+  (rule X T REF ((X B)|USED))
+  (rule A T REF ((X B)|USED)))
+((rule red english (X|REF) USED)(pp "HERE!!!")(red|REF))
+((rule spanish dog REF USED)(pp "HERE!!!"))
+((rule norwegian 1 REF USED)(pp "HERE!!!"))
+((rule smarties snails REF USED)(pp "HERE!!!"))
+((rule snickers oj REF USED)(pp "HERE!!!"))
+((rule ukranian tea REF USED)(pp "HERE!!!"))
+((rule japanese milkyway REF USED)(pp "HERE!!!"))
+((rule milk 3 REF USED)(pp "HERE!!!"))
+  
+
+((constraints X USED)
+  (person X)
+  (pp X)
+  (rule X X X USED))
+  
+  
+?((constraints (HOUSE english CANDY PET DRINK LOCATION)())(fail))  
+  
+  
+  
+  
+  
