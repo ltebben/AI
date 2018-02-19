@@ -29,36 +29,24 @@
 %((right X Y)
  % (member Y LOCATION)
   %(sum 1 Y X))
- 
-((rule () _)(!))
-((rule _ () )(!))
-((rule X (A|B) REF USED)
-  (rule X B REF USED))
-((rule (A|B) X REF USED)
-  (rule B X REF USED))
-((rule (X|A) (B|T) REF USED)%(pp USED)
-  %(pp)(p "X B: ")(p X B)
-  (neg (member (X B) USED))
-  (rule X B REF ((X B)|USED))
-  (rule X T REF ((X B)|USED))
-  (rule A T REF ((X B)|USED)))
-((rule red english (X|REF) USED)(pp "HERE!!!")(red|REF)(!))
-((rule spanish dog REF USED)(pp "HERE!!!")(!))
-((rule norwegian 1 REF USED)(pp "HERE!!!")(!))
-((rule smarties snails REF USED)(pp "HERE!!!")(!))
-((rule snickers oj REF USED)(pp "HERE!!!")(!))
-((rule ukranian tea REF USED)(pp "HERE!!!")(!))
-((rule japanese milkyway REF USED)(pp "HERE!!!")(!))
-((rule milk 3 REF USED)(pp "HERE!!!")(!))
+
+  
+((rule (red english CANDY PET DRINK LOCATION) )(pp "HERE!!!")(!))
+((rule (HOUSE spanish CANDY dog DRINK LOCATION) )(pp "HERE!!!")(!))
+((rule (HOUSE norwegian CANDY PET DRINK 1) )(pp "HERE!!!")(!))
+((rule (HOUSE NAT smarties snails DRINK LOCATION) )(pp "HERE!!!")(!))
+((rule (HOUSE NAT snickers PET oj LOCATION) )(pp "HERE!!!")(!))
+((rule (HOUSE ukranian CANDY PET tea LOCATION) )(pp "HERE!!!")(!))
+((rule (HOUSE japanese milkyway PET DRINK LOCATION) )(pp "HERE!!!")(!))
+((rule (HOUSE NAT CANDY PET milk 3) )(pp "HERE!!!")(!))
   
 
-((constraints X USED)
-  (person X)
-  (pp X)
-  (rule X X X USED)(!))
+((constraints (HOUSE NAT CANDY PET DRINK LOCATION) )
+  (person (HOUSE NAT CANDY PET DRINK LOCATION))
+  (rule (HOUSE NAT CANDY PET DRINK LOCATION))
+  (pp (HOUSE NAT CANDY PET DRINK LOCATION))(fail))
   
-  
-?((constraints (HOUSE english CANDY PET DRINK LOCATION)())(fail))  
+?((constraints (HOUSE english CANDY PET DRINK LOCATION)))  
   
   
   
